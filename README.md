@@ -11,7 +11,7 @@ Because I can't learn assembly language properly (skill issue) and end up creati
 How?
 ---
 
-It reads code from filename, file by file.
+It reads code from filename, file by file. (files as lines)
 
 The file is not even need to contain any data in it, only filename is enough.
 
