@@ -30,7 +30,7 @@ folder named Hello, World! (program folder, inside containing code which are fil
 executable named rtzbf.exe (the interpreter itself)
 ```
 
-running ``rtzbf.exe JumpDemo`` will print ``Hello World!`` in loop.
+running ``rtzbf.exe "Hello, World!"`` will print ``Hello, World!`` inside loop.
 
 Delimiter is ``•`` (Press ALT + 7 on numpad) <br>
 Filename Legend: ``<line_number>•<instruction>•<parameter_1>•<parameter_2>•<parameter_3>•<parameter_4>``
