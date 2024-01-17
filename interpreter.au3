@@ -6,6 +6,9 @@
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 #cs ----------------------------------------------------------------------------
 
+ rtzbf stupid interpreter
+ https://github.com/fault2004/rtzbf
+ Version:        1.0.1
  AutoIt Version: 3.3.16.1
  Author:         fault2004
 
@@ -13,8 +16,19 @@
 
 #cs ----------------------------------------------------------------------------
 
- fA = flag A
- fB = flag B
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+                    Version 2, December 2004
+
+ Copyright (C) 2004 Sam Hocevar <sam@hocevar.net>
+
+ Everyone is permitted to copy and distribute verbatim or modified
+ copies of this license document, and changing it is allowed as long
+ as the name is changed.
+
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. You just DO WHAT THE FUCK YOU WANT TO.
 
 #ce ----------------------------------------------------------------------------
 
@@ -25,17 +39,18 @@ Global $fA, $fB
 If $CmdLine[0] = 1 Then
 	$aL = _FileListToArray($CmdLine[1])
 	For $x = 1 to UBound($aL) -1
-		$aLS = StringSplit($aL[$x], ",")
+		$aLS = StringSplit($aL[$x], "•")
 		If @error Then Exit
 		Select
-			; Insert
+			; Utility
 			;; Create/Update Variable
 			Case $aLS[2] = "inv"
 				Assign($aLS[3], "" & $aLS[4], 2)
-
-			; Utility
+			;; Terminate
+			Case $aLS[2] = "rip"
+				Exit
 			;; Print
-			Case $aLS[2] = "prt"
+			Case $aLS[2] = "out"
 				Local $s1 = Eval($aLS[3])
 				ConsoleWrite($s1 & @CRLF)
 			;; Sleep
@@ -46,7 +61,7 @@ If $CmdLine[0] = 1 Then
 				Local $iC = ConsoleRead()
 				Local $iD = StringReplace($iC, @CRLF, "")
 				Assign($aLS[3], "" & $iD, 2)
-			;; Jump
+			;; Jump to position
 			Case $aLS[2] = "jmp"
 				If $aLS[4] = "A" Then
 					If $fA = 1 Then
@@ -57,6 +72,19 @@ If $CmdLine[0] = 1 Then
 						$x = $aLS[3]
 					EndIf
 				EndIf
+			;; Set flags to 0
+			Case $aLS[2] = "set"
+				If $aLS[3] = "A" Then
+					$fA = 0
+				ElseIf $aLS[3] = "B" Then
+					$fB = 0
+				EndIf
+			;; Replace string
+			Case $aLS[2] = "rep"
+				Local $i1 = Eval($aLS[3])
+				Local $i2 = Eval($aLS[5])
+				Local $r1 = StringReplace($i1, $aLS[4], $i2, 0, 1)
+				Assign($aLS[6], $r1, 2)
 			;; Compare (equal)
 			Case $aLS[2] = "coe"
 				Local $i1 = Eval($aLS[3])
