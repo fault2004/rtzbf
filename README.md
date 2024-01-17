@@ -1,5 +1,5 @@
 # rtzbf
-Running Though Zero Byte Files, the esolang. the Proof of Concept.
+Running Though Zero Byte Files, the esolang. the concept.
 
 Made in AutoIT.
 
